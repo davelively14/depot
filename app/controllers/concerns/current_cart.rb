@@ -1,4 +1,4 @@
-module CurrentCart
+module CurrentCart #accessible to all controllers
   extend ActiveSupport::Concern
 
   private
