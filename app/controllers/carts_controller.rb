@@ -55,9 +55,14 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    # Ensure that the cart you're going to destroy is the user's cart. What happens if it's not the user's cart?
+    @cart.destroy if @cart.id == session[:cart_id]
+
+    # Reset the cart_id for the session. New cart_id will be created upon first addition to cart.
+    session[:cart_id] = nil
+
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to store_url, notice: 'Your cart is currently empty' }
       format.json { head :no_content }
     end
   end
