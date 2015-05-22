@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
+  # Before the "create" method is called, the set_cart method within CurrentCart concern will be executed
+  # and allign session_id and cart_id properly. Will create variable '@cart' to hold the cart object.
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
@@ -31,7 +33,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart }
+        format.html { redirect_to store_url }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
