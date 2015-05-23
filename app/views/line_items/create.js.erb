@@ -6,4 +6,8 @@
 * <a href="... which would cause an error).  The render(@cart) will call the partial template _cart.html.erb in the
 * views/carts directory.
 * */
-$('#cart').html("<%= escape_javascript render(@cart) %>")
+$('#cart').html("<%= escape_javascript render(@cart) %>");
+
+/* For any current_item id tag in an HTML element, this CSS functionality will be added and animated.  Basically, it
+ * goes from yellow back to green (NOTE: we're hardcoding the background-color, is there any way to avoid that?). */
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 1000);

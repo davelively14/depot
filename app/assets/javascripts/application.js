@@ -8,9 +8,12 @@
 // compiled file.
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
+// about supported directives
 //
 //= require jquery
+//
+// Adding the ui 'effect-blind' will allow for the yellow fade technique.
+//= require jquery-ui/effect-blind
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

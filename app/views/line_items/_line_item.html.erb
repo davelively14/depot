@@ -1,4 +1,13 @@
-<tr>
+<!-- If this line_item is the line_item that was last edited (@current_item is an instance variable from the
+     create class in the line_items controller that is set to the line_item being created), then it will set
+     the table row id to "current_item". -->
+<% if line_item == @current_item  %>
+    <tr id="current_item">
+<% else %>
+    <tr>
+<% end %>
+
+<!-- For each line_item within the passed line_item object, this block of code will run. -->
   <td><%= line_item.quantity %></td>
   <td><%= line_item.product.title %></td>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>

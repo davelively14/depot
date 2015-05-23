@@ -38,8 +38,10 @@ class LineItemsController < ApplicationController
         format.html { redirect_to store_url }
 
         # By using .js When the create method finishes handling an Ajax request, Rails will look for a create
-        # template to render. In this case, 'create.js.erb' in the views/line_items directory.
-        format.js
+        # template to render. In this case, 'create.js.erb' in the views/line_items directory.  The @current_item
+        # instance variable will keep track of the newly affected line_item. This will allow other parts of the program
+        # to highlight what changed.
+        format.js   { @current_item = @line_item }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
