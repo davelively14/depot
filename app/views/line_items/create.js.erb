@@ -1,0 +1,9 @@
+/* This tells the browser to replace the content of the element whose id="cart" with that HTML.  The first call,
+* $('#cart') tells JQuery to find the HTML element that has an id of cart.  The html() method is then called,
+* where the first argument contains the desired replacement contents for the element in question.
+*
+* escape_javascript ensures strings will not break up due to quotes in the HTML (i.e. <a href=\"... instead of
+* <a href="... which would cause an error).  The render(@cart) will call the partial template _cart.html.erb in the
+* views/carts directory.
+* */
+$('#cart').html("<%= escape_javascript render(@cart) %>")

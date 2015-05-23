@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
+  # NOTE: these are all called 'hook methods', which are like @overrides, but will still allow the original
+  # method called to be run AFTER executing.
   # Before the "create" method is called, the set_cart method within CurrentCart concern will be executed
   # and allign session_id and cart_id properly. Will create variable '@cart' to hold the cart object.
   before_action :set_cart, only: [:create]
@@ -34,6 +36,10 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_url }
+
+        # By using .js When the create method finishes handling an Ajax request, Rails will look for a create
+        # template to render. In this case, 'create.js.erb' in the views/line_items directory.
+        format.js
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }

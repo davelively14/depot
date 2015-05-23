@@ -13,7 +13,18 @@
               <%= sanitize(product.description) %>
               <div class="price_line">
                 <span class="price"><%= number_to_currency(product.price) %></span>
-                <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+
+                <!-- The button_to method will use HTTP POST. By default, the HTTP POST will call the
+                create method within the associated controller.  In this case, the associated controller is
+                line_items_controller.  line_items_path is a dynamic path method.  The 'remote: true'
+                parameter here will make the request Ajax.
+
+                What this does:
+                User clicks on 'Add to Cart'.  button_to generates an Ajax HTTP POST request that will call
+                the create method within line_items_controller, creating a new line_item.  Because it's a remote Ajax
+                call, and there is a 'format.js' within the create method, the 'create.js.erb' will be used by the
+                browser and automatically call the refresh method when the button has clicked and executed. -->
+                <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
               </div>
             </div>
         <% end  %>
