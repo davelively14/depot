@@ -18,8 +18,10 @@
              @cart.line_items.empty?, which will return 'true' if the cart is empty. As an attribute for the resulting
              <div> html code that is returned, the id is set to 'cart'. The 'do' starts a block, which is also passed
              to the function, although it's not obvious here. -->
-        <%= hidden_dev_if(@cart.line_items.empty?, id: 'cart') do %>
-            <%= render @cart %>
+        <% if @cart  %>
+            <%= hidden_dev_if(@cart.line_items.empty?, id: 'cart') do %>
+                <%= render @cart %>
+            <% end %>
         <% end %>
 
         <ul>

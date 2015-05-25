@@ -10,4 +10,15 @@ class StoreControllerTest < ActionController::TestCase
     assert_select '.price', /\$[,\d]+\.\d\d/
   end
 
+  test "markup needed for store.js.coffee is in place" do
+    get :index
+
+    # Confirms that there are 3 images in the store. All items are located in products.yml within the test\fixtures
+    # folder.
+    assert_select '.store .entry > img', 3
+
+    # Confirms that there are three input type submits within the store.
+    assert_select '.entry input[type=submit]', 3
+  end
+
 end

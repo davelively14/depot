@@ -21,7 +21,7 @@ class LineItemsControllerTest < ActionController::TestCase
       post :create, product_id: products(:ruby).id
     end
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
   end
 
   test "should show line_item" do
@@ -45,5 +45,26 @@ class LineItemsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to line_items_path
+  end
+
+  # Similar to the "should create line_item" test above, this ensures functionality of a create line_item, but with
+  # ajax considerations. Instead of a redirect, we expect a successful response containing a call to replace the HTML
+  # for the cart, and in that HTML we expect to find a row with an ID of current_item with a value matching Programming
+  # Ruby 1.9.  This is achieved by applying the assert_select_jquery() to extract the relevant HTML and then processing
+  # that HTML via whatever additional assertions you want to apply.
+  test "should create line_item via ajax" do
+
+    # Evaluated when LineItem.count changes (i.e. a LineItem was created)
+    assert_difference('LineItem.count') do
+
+      # xhr stands for XML-HttpRequest).
+      xhr :post, :create, product_id: products(:ruby).id
+    end
+
+    assert_response :success
+    assert_select_jquery :html, '#cart' do
+      assert_select 'tr#current_item td', /Programming Ruby 1.9/
+    end
+
   end
 end
