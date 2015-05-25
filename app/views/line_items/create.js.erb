@@ -1,3 +1,8 @@
+/* If cart size is one, then the cart will appear with blinds effect when the cart equals one and one only. This
+*  has to be listed before the cart highlights (see the css background animate below).
+* */
+if ($('#cart tr').length == 1) { $('#cart').show('blind', 1000); }
+
 /* This tells the browser to replace the content of the element whose id="cart" with that HTML.  The first call,
 * $('#cart') tells JQuery to find the HTML element that has an id of cart.  The html() method is then called,
 * where the first argument contains the desired replacement contents for the element in question.
@@ -9,5 +14,5 @@
 $('#cart').html("<%= escape_javascript render(@cart) %>");
 
 /* For any current_item id tag in an HTML element, this CSS functionality will be added and animated.  Basically, it
- * goes from yellow back to green (NOTE: we're hardcoding the background-color, is there any way to avoid that?). */
+ * goes from light green back to green (NOTE: we hardcoded the background-color, is there any way to avoid that?). */
 $('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 1000);
