@@ -1,0 +1,42 @@
+<!-- form_for is a helper method to setup a standard HTML form. The first parameter, @order, tells the method the
+     instance variable to use when naming fields and when arranging for the field values to be passed back to the
+     controller. The following block contains template information (<div>, <p>, etc.), but also uses the block's
+     parameter (f in this case) to reference form context. It is automatically associated with the data in the
+     @order object. -->
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, size: 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address, rows: 3, cols: 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, size: 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :pay_type %><br>
+
+    <!-- PAYMENT_TYPES is a list of available payment options. It is an attribute of the Order model. The array of
+         options is passed to the select helper. We also pass the prompt parameter, which adds a dummy selection
+         containing the prompt text. -->
+    <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: 'Select a payment method' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Place Order' %>
+  </div>
+<% end %>
