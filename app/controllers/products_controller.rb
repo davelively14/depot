@@ -61,6 +61,21 @@ class ProductsController < ApplicationController
     end
   end
 
+  # Will attach an Atom feed to particular product.
+  def who_bought
+    @product = Product.find(params[:id])
+    @latest_order = @product.orders.order(:updated_at).last
+
+    # Checking to see whether request is stale. Identified the source of the content, Rails does the rest. In this case
+    # the content is the last order. By adding format.atom, we cause Rails to look for a template named
+    # views/products/who_bought.atom.builder.
+    if stale?(@latest_order)
+      respond_to do |format|
+        format.atom
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -71,4 +86,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :description, :image_url, :price)
     end
+
+
 end
