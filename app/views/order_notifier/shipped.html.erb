@@ -1,0 +1,12 @@
+<h3>Pragmatic Order Shipped</h3>
+
+<p>Hi, <%= @order.name %>! This is just to let you know that we've shipped your recent order:</p>
+
+<table>
+  <tr><th>Qty</th><th>Descriptions</th><th>Price</th></tr>
+  <%= render @order.line_items %>
+</table>
+
+<p>Thanks for your business!</p>
+
+<img src="https://lh3.googleusercontent.com/-riv_zREQ1QA/VG6IIiu_VkI/AAAAAAAAAEk/1K5goMPHt0Y/s630-fcrop64=1,02010000ffffffff/Google%2BHeader.jpg">

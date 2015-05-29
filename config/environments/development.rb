@@ -38,4 +38,23 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Remove doc declarations to prevent sending smtp emails during testing.
+  # Depot::Application.configure do
+  #   config.action_mailer.delivery_method = :test
+  # end
+
+  Depot::Application.configure do
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+        address:          "smtp.gmail.com",
+        port:             587,
+        domain:           "niletradingco.com",
+        authentication:   "plain",
+        user_name:        "dlively@niletradingco.com",
+        password:         "Mustangs68",
+        enable_starttls_auto: true
+    }
+  end
 end

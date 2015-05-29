@@ -51,6 +51,10 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
 
+        # Call to mailer method "received" to send the email template.  @order is passed, which contains the user's
+        # email address.
+        OrderNotifier.received(@order).deliver_now
+
         # Once order complete, redirect to the store front with a thank you notice.
         format.html { redirect_to store_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
