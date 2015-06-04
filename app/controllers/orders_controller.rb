@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  # Whitelist new and create functions from admin authorization
+  skip_before_action :authorize, only: [:new, :create]
+
   # Our module inside the controllers/concerns director.  Allows us to align the cart and the session.
   include CurrentCart
 

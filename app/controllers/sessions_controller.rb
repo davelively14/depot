@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  # Whitelist from admin authorization
+  skip_before_action :authorize
+
   def new
   end
 

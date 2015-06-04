@@ -1,4 +1,7 @@
 class LineItemsController < ApplicationController
+  # Whitelist create function from admin authorization
+  skip_before_action :authorize, only: :create
+
   include CurrentCart
   # NOTE: these are all called 'hook methods', which are like @overrides, but will still allow the original
   # method called to be run AFTER executing.
