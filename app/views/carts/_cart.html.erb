@@ -1,4 +1,4 @@
-<h2>Your Cart</h2>
+<h2><%= t('.title') %></h2>
 
 <table>
   <!-- Will call '_line_item.html.erb.html' and iterate through everything within the 'cart' class -->
@@ -12,7 +12,7 @@
 </table>
 
 <!-- Adds checkout button.  Calls the HTTP GET with new_order_path (the path for creating a new order object?) -->
-<%= button_to "Checkout", new_order_path, method: :get %>
+<%= button_to t('.checkout'), new_order_path, method: :get %>
 
 <!-- Adds an empty cart button.  Calls the delete method of cart object and requires user confirmation. -->
-<%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to t('.empty'), cart, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -20,4 +20,35 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  layouts:
+    application:
+      title:      "Pragmatic Bookshelf"
+      home:       "Home"
+      questions:  "Questions"
+      news:       "News"
+      contact:    "Contact"
+
+  store:
+    index:
+#     Since title_html and add_html end in the characters '_html', we are free to use HTML entity names for the
+#     characters that do not appear on our keyboard. If we didn't include the '_html', we would end up seeing the
+#     markup on the page.
+      title_html: "Your Pragmatic Catalog"
+      add_html:   "Add to Cart"
+
+  carts:
+    cart:
+      title:      "Your Cart"
+      empty:      "Empty cart"
+      checkout:   "Checkout"
+
+  number:
+    currency:
+      format:
+        unit:       "$"
+        precision:  2
+        separator:  "."
+        delimiter:  ","
+#       %u is the unit and %n the number.
+        format:     "%u%n"

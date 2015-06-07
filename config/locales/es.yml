@@ -1,0 +1,30 @@
+es:
+
+  layouts:
+    application:
+      title:      "Publicaciones de Pragmatic"
+      home:       "Inicio"
+      questions:  "Preguntas"
+      news:       "Noticias"
+      contact:    "Contacto"
+
+  store:
+    index:
+      title_html: "Su Cat&aacute;logo de Pragmatic"
+      add_html:   "A&ntilde;adir al Carrito"
+
+  carts:
+    cart:
+      title:      "Carrito de la Compra"
+      empty:      "Vaciar Carrito"
+      checkout:   "Comprar"
+
+  number:
+    currency:
+      format:
+        unit:       "$US"
+        precision:  2
+        separator:  ","
+        delimiter:  "."
+#       %n is a placeholder for the number, %u the unit. &nbsp is a non-breaking space character.
+        format:     "%n&nbsp;%u"
