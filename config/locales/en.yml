@@ -52,3 +52,16 @@ en:
         delimiter:  ","
 #       %u is the unit and %n the number.
         format:     "%u%n"
+
+  orders:
+    new:
+      legend:           "Please enter your details"
+    form:
+      name:             "Name"
+      address_html:     "Address"
+      email:            "E-mail"
+      pay_type:         "Pay with"
+      pay_prompt_html:  "Select a payment method"
+      submit:           "Place Order"
+
+  thanks:   "Thank you for your order"
