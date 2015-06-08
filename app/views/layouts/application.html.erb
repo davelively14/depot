@@ -9,6 +9,24 @@
 </head>
 <body class='<%= controller.controller_name %>'>
     <div id="banner">
+
+      <!-- The form_tag specifies the path to teh store as the page to be redisplayed when the form is submitted.
+           The class attribute lets us associate the form with some CSS. -->
+      <%= form_tag store_path, class: 'locale' do %>
+
+        <!-- select_tag is used to define the loan input field for this form. It is an options list based on the
+             LANGUAGES array set up in the i18n.rb configuration file, with the default as the current locale. -->
+        <%= select_tag 'set_locale',
+                       options_for_select(LANGUAGES, I18n.locale.to_s),
+                       onchange: 'this.form.submit()' %>
+
+        <!-- Added submit_tag for the situations where javascript is not available. -->
+        <%= submit_tag 'submit' %>
+
+        <!-- When javascript is available, this will hide the submit button. -->
+        <%= javascript_tag "$('.locale input').hide()" %>
+      <% end %>
+
       <%= image_tag("logo.png") %>
       <%= @page_title || t('.title') %>
     </div>
